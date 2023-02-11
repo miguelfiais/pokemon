@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
-import { CardEvolution, Container, ContainerEvolution, Div, MainPokemon, Modal, Nav, PokemonEvolution, Status, StatusEvolution } from './styles';
+import { CardEvolution, Container, ContainerEvolution, Div, MainPokemon, Modal, Nav, Status, StatusEvolution } from './styles';
 import { GrFormClose } from "react-icons/gr";
 
 const Pokemon = () => {
@@ -27,7 +27,6 @@ const Pokemon = () => {
         axios.get(`${baseUrl}${response.data.chain.evolves_to[0].evolves_to[0].species.name}`).then(response => {
           setEvolution(response.data)
           setAvatarEvolution(response.data.sprites.other.dream_world.front_default)
-          console.log(response.data)
         })
       }))
     }
@@ -68,7 +67,6 @@ const Pokemon = () => {
                   <p>{evolution.name}</p>
                 </CardEvolution>
                 <Modal isOpen={modalOpen}>
-                <PokemonEvolution>
                   <button onClick={() => setModalOpen(!modalOpen)}><GrFormClose /></button>
                     <div>
                       <img src={avatarEvolution} alt={evolution.name} />
@@ -86,12 +84,11 @@ const Pokemon = () => {
                         </StatusEvolution>
                       )
                     }
-                  </PokemonEvolution> 
                 </Modal>
               </ContainerEvolution>
             </>
           ) : (
-            <h2>No Evolution</h2>
+            <h2 style={{marginTop: '20px'}}>No Evolution</h2>
           )
         }
       </Div>

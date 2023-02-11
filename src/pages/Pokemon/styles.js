@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import background from "../../assets/background.jpg"
 
 export const Container = styled.div`
-   
 `
 export const Nav = styled.nav`
     padding: 1rem 2rem;
@@ -25,8 +24,7 @@ export const Div = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 2rem;
-    gap: 2rem;
+    padding: 2rem 0;
 `
 
 export const MainPokemon = styled.main`
@@ -39,23 +37,21 @@ export const MainPokemon = styled.main`
     align-items: center;
     max-width: 800px;
     width: 98%;
-    gap: 3rem;
+    gap: 1rem;
     div{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        font-weight: 600;
-        font-size: 18px;
-        color: #000000;
-        text-transform: capitalize;
+        p{
+            font-weight: 600;
+            font-size: 18px;
+            text-transform: capitalize;
+            text-align: center;
+            margin-top: 5px;
+        }
         img{
             width: 100%;
         }
     }
     @media screen and (max-width: 600px) {
         flex-direction: column;
-        width: 90%;
         div{
             align-self: center;
             img{
@@ -83,13 +79,13 @@ export const Status = styled.ul`
     }
 `
 export const ContainerEvolution = styled.div`
-   
+    max-width: 600px;
+    width: 98%;
 `
 export const CardEvolution = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+    display: block;
+    margin: 0 auto;
+    width: max-content;
     background: rgba(255,255,255,0.4);
     backdrop-filter: blur(6px);
     border-radius: 12px;
@@ -110,47 +106,60 @@ export const CardEvolution = styled.div`
         font-size: 16px;
         font-weight: 600;
         text-transform: capitalize;
+        text-align: center;
     }
     ${({isOpen}) => isOpen && css`
         display: none;
     `}
 `
 export const Modal = styled.div`
-    display: none;
-    ${({isOpen}) => isOpen && css`
-        display: block;
-    `}
-`
-export const PokemonEvolution = styled.div`
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding: 1rem;
     background: rgba(255,255,255,0.4);
     backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    div{
+        img{
+            width: 100%;
+            max-width: 150px;
+        }
+        p{
+            text-align: center;
+            margin-top: 5px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+    }
     button{
         position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background-color: transparent;
+        top: .5rem;
+        right: .5rem;
+        background: transparent;
         border: none;
         svg{
             width: 25px;
             height: auto;
         }
     }
-    img{
-        width: 100%;
-        max-width: 150px;
-        margin-bottom: 5px;
+    @media screen and (max-width: 500px) {
+        div{
+            img{
+                max-width: 100px;
+            }
+            p{
+                text-align: center;
+                margin-top: 5px;
+                font-weight: 600;
+                text-transform: capitalize;
+            }
+        }
     }
-    p{
-        font-size: 16px;
-        font-weight: 600;
-        text-transform: capitalize;
-        text-align: center;
-    }
+    ${({isOpen}) => isOpen && css`
+        display: flex;
+    `}
 `
 export const StatusEvolution = styled.ul`
     list-style: none;
@@ -160,11 +169,21 @@ export const StatusEvolution = styled.ul`
         text-transform: capitalize;
         span{
             font-size: 16px;
-            line-height: 22px;
             color: #505050;
         }
     }
     h2{
         margin-bottom: 1rem;
+    }
+    @media screen and (max-width: 500px) {
+        li{
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: capitalize;
+            span{
+                font-size: 12px;
+                color: #505050;
+            }
+        }
     }
 `
