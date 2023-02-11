@@ -8,7 +8,6 @@ import pokemonsImg from "../../assets/pokemons.png"
 
 import { Container } from './styles'
 
-
 const Home = () => {
   const navigate = useNavigate()
 
@@ -19,9 +18,8 @@ const Home = () => {
     event.preventDefault()
     try{
       if(search){
-        const {data} = await axios.get(`${baseUrl}${search}`)
+        const {data} = await axios.get(`${baseUrl}${search.toLowerCase()}`)
         navigate(`/pokemon/${data.name}`)
-        setSearch("")
       }
       else{
         toast.warn("Digite o nome do Pokémon")
